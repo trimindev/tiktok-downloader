@@ -32,7 +32,7 @@ class TitokDownloader:
         return
 
     async def download_by_url(self):
-        if await download_video(self.url, self.output_folder):
+        if download_video(self.url, self.output_folder):
             self.dm.clear_entry_data("url")
         return
 
@@ -46,9 +46,9 @@ class TitokDownloader:
         sleep(0.5)
 
         toggle_console()
-        sleep(0.5)
+        sleep(3)  # Important
 
-        with open(r"lib\getTiktokUrls.js", "r") as file:
+        with open(r"getTiktokUrls.js", "r") as file:
             js_content = file.read()
             copy_paste_enter(js_content)
 

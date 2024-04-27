@@ -1,16 +1,25 @@
 from tiktok_downloader import snaptik
 import asyncio
 import uuid
+import threading
 
 
-async def download_video(video_url: str, output_folder: str):
+def extract_video_id(tiktok_url):
+    url_parts = tiktok_url.split("/")
+    video_index = url_parts.index("video")
+    video_id = url_parts[video_index + 1]
+    return video_id
+
+
+def download_video(video_url: str, output_folder: str):
     # Get the video data
     video_data = snaptik(video_url)
     # Check if video data is available
     if video_data:
         if video_data[0].type == "video":
-            random_id = str(uuid.uuid4())[:5]
-            output_filename = f"{output_folder}/{random_id}.mp4"
+
+            video_id = extract_video_id(video_url)
+            output_filename = f"{output_folder}/{video_id}.mp4"
 
             # Download the video
             video_data[0].download(output_filename)

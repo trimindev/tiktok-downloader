@@ -4,6 +4,6 @@ PyInstaller.__main__.run(
     [
         "main.py",
         "--onefile",
-        "--noconsole",
+        # "--noconsole",
     ]
 )

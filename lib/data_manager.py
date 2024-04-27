@@ -43,7 +43,7 @@ class DataManager:
                     if file:
                         entry.delete(0, tk.END)
                         entry.insert(0, file)
-                        self.save_entry_data()
+                        self.save_entry_data(None)
 
             button = tk.Button(frame, text="Browse", command=browse)
             button.grid(row=0, column=2, padx=(0, 5), pady=5)
